@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>log.js调试工具</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="root"></div>
+<div id="terminal_info"></div>
+
+<script>
+    setTimeout(() => {
+        log.init({ sendAddress: 'https://baidu.com/p', reportingBefore: reportingBefore });
+
+        document.getElementById('terminal_info').innerText = (JSON.stringify(log.getTerminalInfo()))
+
+    }, 2000);
+
+    function reportingBefore(params){
+        document.getElementById('root').innerText = (JSON.stringify(params));
+        return params;
+    }
+
+</script>
+</body>
+</html>
