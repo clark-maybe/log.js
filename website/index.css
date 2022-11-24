@@ -43,6 +43,7 @@ a:focus {
     background-color: #242526;
     position: fixed;
     width: 100%;
+    top: 0;
 }
 
 .header .logo {

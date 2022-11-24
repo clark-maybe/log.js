@@ -2,27 +2,193 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="https://logjs.site/images/logo.png">
     <title>log.js调试工具</title>
+    <meta name="title" content="log.js">
+    <meta name="keywords" content="One line code solution front-end log.">
+    <meta name="description" content="One line code solution front-end log. Web Log collection. React, Vue, Jquery">
+    <link rel="stylesheet" href="https://logjs.site/index.css">
     <style>
-
+        input {
+            padding: 5px 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #cbcbcb;
+            margin: 0 5px;
+            width: 100px;
+        }
+        .label{
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+        .formItem{
+            display: inline-block;
+            padding: 10px;
+        }
+        em{
+            font-size: 12px;
+            color: #929292;
+        }
+        button{
+            padding: 6px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            background: #09bf89;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #19e7ad;
+        }
+        button[disabled]{
+            background: #bfbfbf;
+        }
+        .content{
+            padding: 20px;
+            word-break: break-all;
+            white-space: pre-wrap;
+            color: #919191;
+            background: #242526;
+            border-radius: 5px;
+            overflow-y: scroll;
+            height: 10rem;
+            margin: 10px;
+            font-size: 12px;
+            width: 40%;
+            display: inline-block;
+            text-align: left;
+        }
+        .form{
+            background: #242526;
+            margin: 61px 0 0 0;
+            padding: 10px;
+        }
+        .result-content{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-<div id="root"></div>
-<div id="terminal_info"></div>
+<div class="header">
+    <div class="logo">
+        <img src="https://logjs.site/images/logo.png" alt="">
+        <span class="logjs">LOGJS</span>
+    </div>
+    <!--    <div class="empty"></div>-->
+    <div class="item">
+        <a class="text" href="https://logjs.site">首页</a>
+    </div>
+    <div class="item">
+        <span class="text">快速开始</span>
+    </div>
+    <div class="item">
+        <span class="text">文档</span>
+    </div>
+    <div class="item">
+        <span class="text">常见问题</span>
+    </div>
+    <div class="item">
+        <a class="text" href="https://logjs.site/version/2.0.0beta/debugTool.html">调试工具</a>
+    </div>
+    <div class="starArea">
+
+        <div class="github-logo">
+            <a class="Header-link" href="https://github.com/fanliang8023/log.js" target="_blank">
+                <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true">
+                    <path fill="white" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                <span class="text">GitHub</span>
+                <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="form">
+    <div class="formItem">
+        <span class="label">sendAddress <em>发送地址</em> </span> <input type="text" placeholder="请输入发送地址" id="sendAddress">
+    </div>
+    <div class="formItem">
+        <span class="label">degree <em>采样率</em> </span> <input type="number" placeholder="请输入采样率" id="degree">
+    </div>
+    <div class="formItem">
+        <span class="label">id <em>实例ID</em> </span> <input type="text" placeholder="请输入实例ID" id="id">
+    </div>
+    <div class="formItem">
+        <button type="button" id="init">初始化</button>
+        <button type="button" id="setOptions" disabled>更新设置</button>
+        <button type="button" id="io" disabled>IO测试</button>
+        <button type="button" id="click" disabled>点击测试</button>
+        <button type="button" id="error" disabled>生成错误</button>
+        <button type="button" id="diy" disabled>自定义信息测试</button>
+    </div>
+</div>
+
+<div class="result-content">
+    <div id="content_terminal_info" class="content"> [终端信息] 尚未初始化 log.js</div>
+    <div id="content_performance_info" class="content"> [性能信息] 尚未初始化 log.js</div>
+    <div id="content_click" class="content"> [点击信息] 尚未初始化 log.js</div>
+    <div id="content_io" class="content"> [io信息] 尚未初始化 log.js</div>
+    <div id="content_diy" class="content"> [自定义信息] 尚未初始化 log.js</div>
+    <div id="content_error" class="content"> [错误信息] 尚未初始化 log.js</div>
+</div>
 
 <script>
-    setTimeout(() => {
-        log.init({ sendAddress: 'https://baidu.com/p', reportingBefore: reportingBefore });
 
-        document.getElementById('terminal_info').innerText = (JSON.stringify(log.getTerminalInfo()))
+    let sendAddress = 'https://logjs.site/log-war/log';
+    let logType = [ 'error', 'click', 'diy', 'io' ];
+    let degree = 1;
+    let id = 'debug_tool';
 
-    }, 2000);
+    document.getElementById('sendAddress').value = sendAddress;
+    document.getElementById('sendAddress').onchange = e => sendAddress = e.target.value;
+
+    document.getElementById('degree').value = degree;
+    document.getElementById('degree').onchange = e => degree = e.target.value;
+
+    document.getElementById('id').value = id;
+    document.getElementById('id').onchange = e => id = e.target.value;
 
     function reportingBefore(params){
-        document.getElementById('root').innerText = (JSON.stringify(params));
+        document.getElementById('content_click').innerHTML = '点击信息:\n' + JSON.stringify({ click_list: params.click_list }, void 0, ' ');
+        document.getElementById('content_io').innerHTML = '异步资源信息:\n' + JSON.stringify({ io_list: params.io_list }, void 0, ' ');
+        document.getElementById('content_diy').innerHTML = '自定义信息:\n' + JSON.stringify({ diy_list: params.diy_list }, void 0, ' ');
+        document.getElementById('content_error').innerHTML = '错误信息:\n' + JSON.stringify({ error_list: params.error_list }, void 0, ' ');
+        document.getElementById('content_terminal_info').innerHTML = '终端信息:\n' + JSON.stringify({ terminal_info: params.terminal_info }, void 0, ' ');
+        document.getElementById('content_performance_info').innerHTML = '性能信息:\n' + JSON.stringify({ performance_info: params.performance_info }, void 0, ' ');
         return params;
+    }
+
+    document.getElementById('setOptions').onclick = function (){
+        window.log.setOptions({ sendAddress, reportingBefore, logType, degree, id });
+    }
+
+    document.getElementById('io').onclick = function (){
+        fetch('https://localhost:8080/test')
+    }
+
+    document.getElementById('error').onclick = function (){
+        console.log(this_is_a_error);
+    }
+
+    document.getElementById('click').onclick = function (){
+        console.log('A click was triggered');
+    }
+
+    document.getElementById('diy').onclick = function (){
+        window.log.log('A click was triggered', 'debugTool');
+    }
+
+    document.getElementById('init').onclick = function (){
+        log.init({ sendAddress, reportingBefore, logType, degree, id });
+        document.getElementById('setOptions').disabled = false;
+        document.getElementById('io').disabled = false;
+        document.getElementById('click').disabled = false;
+        document.getElementById('diy').disabled = false;
+        document.getElementById('error').disabled = false;
     }
 
 </script>
