@@ -91,7 +91,7 @@ a:focus {
 .header .starArea {
     display: inline-block;
     margin: 0 65px;
-    width: 150px;
+    width: 250px;
     line-height: 60px;
     float: right;
     position: relative;
@@ -108,6 +108,28 @@ a:focus {
 }
 .header .starArea .Header-link .text:hover{
     color: #ffffff;
+}
+
+.header .starArea .gitee-link{
+    position: relative;
+}
+
+.header .starArea .gitee-link .gitee-logo{
+    width: 145px;
+    position: absolute;
+    top: -21px;
+    left: -53px;
+}
+
+.header .starArea .gitee-link .gitee{
+    padding-left: 38px;
+}
+
+.header .starArea .division{
+    display: inline-block;
+    margin: 0 3px;
+    height: 20px;
+    border: 1px solid white;
 }
 
 .header .starArea img {
@@ -130,13 +152,13 @@ a:focus {
 .body {
     margin: 0 auto;
     padding-top: 60px;
-    background: #242526;
+    background: rgba(33,37,41);
 }
 
 .body .headText{
     text-align: center;
     color: #FFFFFF;
-    padding: 100px 0 30px 0;
+    padding: 5px 0 30px 0;
     font-size: 3rem;
 }
 

@@ -8,6 +8,8 @@
     <meta name="keywords" content="One line code solution front-end log.">
     <meta name="description" content="One line code solution front-end log. Web Log collection. React, Vue, Jquery">
     <link rel="stylesheet" href="https://logjs.site/index.css">
+    <link rel="stylesheet" href="https://logjs.site/bootstrap.min.css">
+    <script src="https://logjs.site/bootstrap.min.js"></script>
     <style>
         input {
             padding: 5px 8px;
@@ -29,21 +31,6 @@
             font-size: 12px;
             color: #929292;
         }
-        button{
-            padding: 6px;
-            border-radius: 5px;
-            border: none;
-            font-size: 16px;
-            background: #09bf89;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        button:hover{
-            background: #19e7ad;
-        }
-        button[disabled]{
-            background: #bfbfbf;
-        }
         .content{
             padding: 20px;
             word-break: break-all;
@@ -52,59 +39,82 @@
             background: #242526;
             border-radius: 5px;
             overflow-y: scroll;
-            height: 10rem;
+            height: 20rem;
             margin: 10px;
             font-size: 12px;
-            width: 40%;
+            width: 95%;
             display: inline-block;
             text-align: left;
         }
         .form{
-            background: #242526;
-            margin: 61px 0 0 0;
             padding: 10px;
+            background: #242526;
+            margin-top: 1px;
         }
-        .result-content{
-            text-align: center;
+        .card{
+            border: none;
+            margin: 16px;
+        }
+        .division{
+            display: inline-block;
+            margin: 13px 3px;
+            height: 20px;
+            border: 1px solid #595959;
         }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="logo">
-        <img src="https://logjs.site/images/logo.png" alt="">
-        <span class="logjs">LOGJS</span>
-    </div>
-    <!--    <div class="empty"></div>-->
-    <div class="item">
-        <a class="text" href="https://logjs.site">首页</a>
-    </div>
-    <div class="item">
-        <span class="text">快速开始</span>
-    </div>
-    <div class="item">
-        <span class="text">文档</span>
-    </div>
-    <div class="item">
-        <span class="text">常见问题</span>
-    </div>
-    <div class="item">
-        <a class="text" href="https://logjs.site/version/2.0.0beta/debugTool.html">调试工具</a>
-    </div>
-    <div class="starArea">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <img src="https://logjs.site/images/logo.png" alt="" style="width: 25px; margin: 0 10px;">
+        <a class="navbar-brand" href="https://logjs.site/">
+            LOGJS
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="https://logjs.site/">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">快速开始</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">文档</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">常见问题</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" disabled>调试工具</a>
+                </li>
+            </ul>
 
-        <div class="github-logo">
-            <a class="Header-link" href="https://github.com/fanliang8023/log.js" target="_blank">
-                <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true">
-                    <path fill="white" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
-                <span class="text">GitHub</span>
-                <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg>
-            </a>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="https://github.com/fanliang8023/log.js" target="_blank">
+                        <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true">
+                            <path fill="white" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="division"></li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="https://gitee.com/clark-fl/log.js" target="_blank">
+                        <img src="https://logjs.site/images/gitee-logo.png" alt="" style="width: 36px;">
+                    </a>
+                </li>
+            </ul>
         </div>
-
     </div>
+</nav>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>让我们先初始化 log.js !</strong> 你需要先初始化后 log.js 才可以开始工作
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
 <div class="form">
@@ -118,22 +128,70 @@
         <span class="label">id <em>实例ID</em> </span> <input type="text" placeholder="请输入实例ID" id="id">
     </div>
     <div class="formItem">
-        <button type="button" id="init">初始化</button>
-        <button type="button" id="setOptions" disabled>更新设置</button>
-        <button type="button" id="io" disabled>IO测试</button>
-        <button type="button" id="click" disabled>点击测试</button>
-        <button type="button" id="error" disabled>生成错误</button>
-        <button type="button" id="diy" disabled>自定义信息测试</button>
+        <button type="button" class="btn btn-primary" id="init">初始化</button>
+        <button type="button" class="btn btn-outline-primary" id="setOptions" disabled>更新设置</button>
+        <button type="button" class="btn btn-outline-primary" id="io" disabled>IO测试</button>
+        <button type="button" class="btn btn-outline-primary" id="click" disabled>点击测试</button>
+        <button type="button" class="btn btn-outline-primary" id="error" disabled>生成错误</button>
+        <button type="button" class="btn btn-outline-primary" id="diy" disabled>自定义信息测试</button>
     </div>
 </div>
 
-<div class="result-content">
-    <div id="content_terminal_info" class="content"> [终端信息] 尚未初始化 log.js</div>
-    <div id="content_performance_info" class="content"> [性能信息] 尚未初始化 log.js</div>
-    <div id="content_click" class="content"> [点击信息] 尚未初始化 log.js</div>
-    <div id="content_io" class="content"> [io信息] 尚未初始化 log.js</div>
-    <div id="content_diy" class="content"> [自定义信息] 尚未初始化 log.js</div>
-    <div id="content_error" class="content"> [错误信息] 尚未初始化 log.js</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">终端信息</h5>
+                <p class="card-text content" id="content_terminal_info">尚未初始化 log.js</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">性能信息</h5>
+                <p class="card-text content" id="content_performance_info">尚未初始化 log.js</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">点击信息</h5>
+                <p class="card-text content" id="content_click">尚未初始化 log.js</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">IO信息</h5>
+                <p class="card-text content" id="content_io">尚未初始化 log.js</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">自定义信息</h5>
+                <p class="card-text content" id="content_diy">尚未初始化 log.js</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">错误信息</h5>
+                <p class="card-text content" id="content_error">尚未初始化 log.js</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -153,12 +211,12 @@
     document.getElementById('id').onchange = e => id = e.target.value;
 
     function reportingBefore(params){
-        document.getElementById('content_click').innerHTML = '点击信息:\n' + JSON.stringify({ click_list: params.click_list }, void 0, ' ');
-        document.getElementById('content_io').innerHTML = '异步资源信息:\n' + JSON.stringify({ io_list: params.io_list }, void 0, ' ');
-        document.getElementById('content_diy').innerHTML = '自定义信息:\n' + JSON.stringify({ diy_list: params.diy_list }, void 0, ' ');
-        document.getElementById('content_error').innerHTML = '错误信息:\n' + JSON.stringify({ error_list: params.error_list }, void 0, ' ');
-        document.getElementById('content_terminal_info').innerHTML = '终端信息:\n' + JSON.stringify({ terminal_info: params.terminal_info }, void 0, ' ');
-        document.getElementById('content_performance_info').innerHTML = '性能信息:\n' + JSON.stringify({ performance_info: params.performance_info }, void 0, ' ');
+        document.getElementById('content_click').innerHTML = JSON.stringify({ click_list: params.click_list }, void 0, ' ');
+        document.getElementById('content_io').innerHTML = JSON.stringify({ io_list: params.io_list }, void 0, ' ');
+        document.getElementById('content_diy').innerHTML = JSON.stringify({ diy_list: params.diy_list }, void 0, ' ');
+        document.getElementById('content_error').innerHTML = JSON.stringify({ error_list: params.error_list }, void 0, ' ');
+        document.getElementById('content_terminal_info').innerHTML = JSON.stringify({ terminal_info: params.terminal_info }, void 0, ' ');
+        document.getElementById('content_performance_info').innerHTML = JSON.stringify({ performance_info: params.performance_info }, void 0, ' ');
         return params;
     }
 
@@ -189,6 +247,8 @@
         document.getElementById('click').disabled = false;
         document.getElementById('diy').disabled = false;
         document.getElementById('error').disabled = false;
+
+        document.getElementById('init').disabled = true;
     }
 
 </script>

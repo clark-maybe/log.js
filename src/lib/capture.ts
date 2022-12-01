@@ -2,6 +2,7 @@ import UAParser from "ua-parser-js";
 import storage from './storage';
 import {onFCP, onTTFB, onLCP, onFID} from 'web-vitals';
 import {ErrorInfo, ClickInfo} from "../interface";
+import { IGNORE_LIST } from '../config';
 
 /** Capture module */
 
@@ -23,7 +24,7 @@ const capture_onerror = () => {
 
 const capture_terminal = () => {
 
-    get_ip(1);
+    get_ip_souhu(1);
     get_ttfb();
     get_fcp();
     get_lcp();
@@ -51,16 +52,14 @@ const get_referrer = () => {
     return ref;
 }
 
-const get_ip = (number: number) => {
+const get_ip_souhu = (number: number) => {
     let ipElement: any = document.createElement("script");
-    ipElement.src = location.protocol + "//pv.sohu.com/cityjson?ie=utf-8";
+    ipElement.src = `${location.protocol}//pv.sohu.com/cityjson?ie=utf-8`;
 
     ipElement.onload = function (e: Event) {
 
-        //If not, try again - three times
-        if(!window['returnCitySN']['cip'] && number <= 3){
-            get_ip(number += 1);
-        }
+        //Stop acquiring IP if it has already been acquired
+        if(storage.terminal_info.ip) return void 0;
 
         let obj: object = {
             ip: window['returnCitySN']['cip'],
@@ -69,6 +68,14 @@ const get_ip = (number: number) => {
         storage.save("terminal_info", obj);
         document.head.removeChild(ipElement);
     };
+
+    ipElement.onerror = function (e: Event){
+        //If not, try again - three times
+        if(number <= 5){
+            document.head.removeChild(ipElement);
+            get_ip_souhu(number += 1);
+        }
+    }
 
     document.head.appendChild(ipElement);
 }
@@ -85,8 +92,8 @@ const capture_onclick = () => {
         });
         let click_info: ClickInfo = {
             logType: 'click',
-            eleType: e.target.localName,
-            eleContent: e.target.innerText,
+            eleType: e.target?.localName,
+            eleContent: e.target?.innerText,
             timeStep: new Date().getTime(),
             href: window.location.href,
             eleLocation: eleLocation.join('<=')
@@ -180,7 +187,13 @@ const create_io_monitor = () => {
 
         let ioFilter: any = storage.config_info.ioFilter;
         let resourcesList: any = list.getEntries();
-        resourcesList = resourcesList.filter( (item: any) => ioFilter(item) && item.name !== storage.config_info.sendAddress && item.name !== `${location.protocol}//pv.sohu.com/cityjson?ie=utf-8`);
+        resourcesList = resourcesList.filter( (item: any) => {
+
+            let flag = true;
+            if(IGNORE_LIST.map( it => it === item.name)) flag = false;
+
+            return ioFilter(item) && (item.name.indexOf(storage.config_info.sendAddress) === -1) && flag;
+        });
 
         let tempList: any[] = [];
         resourcesList.map( (item: any) => {

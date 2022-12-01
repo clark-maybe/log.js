@@ -1,6 +1,6 @@
 {
   "name": "logjs.npm",
-  "version": "2.0.0beta",
+  "version": "2.0.1",
   "description": "The front-end log can be easily obtained with only one line of code",
   "main": "log.npm.js",
   "scripts": {

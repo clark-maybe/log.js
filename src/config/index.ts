@@ -1,6 +1,11 @@
 /** 生成默认配置信息 */
 
-export const VERSION = '2.0.0beta';
+export const VERSION = '2.0.1';
+
+//忽略采集
+export const IGNORE_LIST = [
+    `${location.protocol}//pv.sohu.com/cityjson?ie=utf-8`
+];
 
 export function getDefaultInfo() {
 
